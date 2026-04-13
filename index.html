@@ -1,1 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shuban Milind Mhatre | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #111a2e;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.10);
+      --text: #e8eefc;
+      --muted: #b5c0dd;
+      --accent: #6ea8fe;
+      --accent-2: #7c3aed;
+      --accent-3: #22c55e;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      --radius: 24px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(110, 168, 254, 0.22), transparent 25%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.18), transparent 26%),
+        linear-gradient(180deg, #08101d 0%, #0b1220 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(8, 16, 29, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--shadow);
+      font-weight: 900;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 72px 0 36px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -120px -120px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(110,168,254,0.26), transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.14);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      margin: 18px 0 14px;
+      letter-spacing: -0.04em;
+    }
+    .lead {
+      color: var(--muted);
+      max-width: 62ch;
+      font-size: 1.03rem;
+      margin-bottom: 24px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      border-color: transparent;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .side-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .profile-box {
+      padding: 22px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .profile-avatar {
+      width: 86px;
+      height: 86px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .small-title {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+    }
+    .small-text { margin: 0; color: var(--muted); }
+
+    .info-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .info-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .info-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .info-value { font-weight: 700; }
+
+    section {
+      padding: 22px 0;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-card, .project-card, .cert-card, .contact-card {
+      padding: 24px;
+    }
+    .about-card p, .project-card p, .contact-card p { color: var(--muted); }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .chip {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .project-card h3, .cert-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(110, 168, 254, 0.12);
+      color: #dbe8ff;
+      border: 1px solid rgba(110, 168, 254, 0.18);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .timeline-item strong { display: block; margin-bottom: 4px; }
+    .timeline-item span { color: var(--muted); }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .cert-card ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .cert-card li + li { margin-top: 6px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      transition: transform 0.2s ease;
+    }
+    .contact-link:hover { transform: translateY(-2px); }
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid, .cards-grid, .cert-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-card, .side-card, .about-card, .project-card, .cert-card, .contact-card {
+        padding: 20px;
+      }
+      h1 { font-size: 2.2rem; }
+      .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .timeline-item {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-badge">SM</div>
+        <div>
+          <div>Shuban Milind Mhatre</div>
+          <small style="color: var(--muted);">Information Technology Student</small>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="panel hero-card">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> Open to internships and entry-level roles</span>
+          <h1>Building clean, useful, and scalable tech experiences.</h1>
+          <p class="lead">
+            I am Shuban Milind Mhatre, an Information Technology engineering student focused on full-stack development,
+            AI/ML fundamentals, and practical problem-solving. I enjoy turning ideas into simple, polished web applications.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:mhatreshuban@gmail.com">Email Me</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/shuban-mhatre-32a71237a/" target="_blank" rel="noopener">LinkedIn Profile</a>
+          </div>
+        </div>
+
+        <aside class="panel side-card">
+          <div class="profile-box">
+            <div class="profile-avatar">S</div>
+            <h3 class="small-title">Shuban Milind Mhatre</h3>
+            <p class="small-text">B.E. in Information Technology<br />K. C. College of Engineering and Management Studies and Research</p>
+          </div>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Email</span>
+              <div class="info-value">mhatreshuban@gmail.com</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Phone</span>
+              <div class="info-value">9619314058</div>
+            </div>
+            <div class="info-item">
+              <span class="info-label">LinkedIn</span>
+              <div class="info-value">shuban-mhatre-32a71237a</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>Quick introduction</p>
+      </div>
+      <div class="panel about-card">
+        <p>
+          I am currently pursuing a Bachelor of Engineering in Information Technology. My interests include full-stack
+          development, data structures, cloud computing, and AI/ML. I have worked on a hospital appointment system project
+          and completed multiple industry-style certifications to strengthen my technical foundation.
+        </p>
+        <div class="chips">
+          <span class="chip">Full-Stack Development</span>
+          <span class="chip">AI/ML</span>
+          <span class="chip">Cloud Computing</span>
+          <span class="chip">Problem Solving</span>
+          <span class="chip">Teamwork</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Core technologies and strengths</p>
+      </div>
+      <div class="panel about-card">
+        <div class="chips">
+          <span class="chip">JavaScript</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Java</span>
+          <span class="chip">Python</span>
+          <span class="chip">C</span>
+          <span class="chip">React.js</span>
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Supabase</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Git</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Postman</span>
+          <span class="chip">DBMS</span>
+          <span class="chip">Networking Basics</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Highlighted work</p>
+      </div>
+      <div class="cards-grid">
+        <article class="panel project-card">
+          <h3>Health Bridge -- Hospital Appointment System</h3>
+          <p>
+            A full-stack web application designed to streamline hospital appointment booking and management.
+            It includes patient registration, doctor scheduling, booking workflows, and role-based access for admins,
+            doctors, and patients.
+          </p>
+          <div class="project-meta">
+            <span class="tag">React.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </article>
+
+        <article class="panel project-card">
+          <h3>Certifications & Learning Portfolio</h3>
+          <p>
+            A structured learning journey focused on AI/ML, Python, Java, DBMS, networking, and communication skills.
+            Built through practical online courses and internship-style training.
+          </p>
+          <div class="project-meta">
+            <span class="tag">AI/ML</span>
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">DBMS</span>
+          </div>
+        </article>
+
+        <article class="panel project-card">
+          <h3>Future Focus Areas</h3>
+          <p>
+            I am currently interested in cloud computing, data security, and scalable web applications.
+            I plan to develop more projects in these areas to strengthen my profile for internships and higher studies.
+          </p>
+          <div class="project-meta">
+            <span class="tag">Cloud</span>
+            <span class="tag">Security</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">Scalability</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Internship and training</p>
+      </div>
+      <div class="panel about-card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div>
+              <strong>AI-ML Virtual Internship</strong>
+              <span>Completed a 10-week internship supported by Google Developers and EduSkills.</span>
+            </div>
+            <div style="color: var(--muted);">2025</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="section-title">
+        <h2>Certifications</h2>
+        <p>Selected completed certifications</p>
+      </div>
+      <div class="cert-grid">
+        <article class="panel cert-card">
+          <h3>Core Technical Certifications</h3>
+          <ul>
+            <li>AI-ML Virtual Internship -- AICTE, EduSkills, Google Developers</li>
+            <li>AI for Entrepreneurship -- Intel and Skill India Digital Hub</li>
+            <li>Graph Data Structures: Graph Traversal & Shortest Path -- Infosys Springboard</li>
+            <li>Database Management System Part 1 -- Infosys Springboard</li>
+            <li>Programming Concepts in Python -- Infosys Springboard</li>
+            <li>Introduction to Python -- Infosys Springboard</li>
+          </ul>
+        </article>
+        <article class="panel cert-card">
+          <h3>Additional Certifications</h3>
+          <ul>
+            <li>Dart Programming Training: Beginner Level -- Infosys Springboard</li>
+            <li>OOPs in Java -- Simplilearn SkillUp</li>
+            <li>Networking Basics -- Cisco Networking Academy</li>
+            <li>Effective Communication Skills -- Infosys Springboard</li>
+            <li>C Programming for Beginners -- Great Learning</li>
+            <li>Financial Literacy -- Tech Mahindra Foundation</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let’s connect</p>
+      </div>
+      <div class="contact-grid">
+        <div class="panel contact-card">
+          <h3 style="margin: 0 0 10px;">Reach out for internships, collaboration, or opportunities.</h3>
+          <p>
+            I am open to learning opportunities in software development, cloud computing, AI/ML, and related roles.
+          </p>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:mhatreshuban@gmail.com">
+              <span>Email</span>
+              <span>mhatreshuban@gmail.com</span>
+            </a>
+            <a class="contact-link" href="tel:9619314058">
+              <span>Phone</span>
+              <span>9619314058</span>
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/shuban-mhatre-32a71237a/" target="_blank" rel="noopener">
+              <span>LinkedIn</span>
+              <span>Profile Link</span>
+            </a>
+          </div>
+        </div>
+        <div class="panel contact-card">
+          <h3 style="margin: 0 0 10px;">Profile Snapshot</h3>
+          <p style="margin: 0;">
+            Education: B.E. in Information Technology<br />
+            College: K. C. College of Engineering and Management Studies and Research<br />
+            Interests: Full-Stack Development, AI/ML, Cloud Computing, Data Security
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 Shuban Milind Mhatre. Designed for a clean, modern portfolio presentation.
+    </div>
+  </main>
+</body>
+</html>
 
